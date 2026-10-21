@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<title>Egaaf Clothes | Men's Fashion</title>
+<style>
+:root{--black:#111;--gold:#d5ad55;--cream:#f7f5ef;--muted:#777;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--black)}
+button,input,select,textarea{font:inherit}
+button,a{touch-action:manipulation}
+a{color:inherit;text-decoration:none}
+.topbar{background:var(--black);color:#fff;text-align:center;padding:9px 12px;font-size:12px;letter-spacing:1px}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e8e4da}
+.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px}.logo span{color:#b68a2e}
+.navlinks{display:flex;gap:22px;font-size:14px}.navlinks a:hover{color:#a67b20}
+.cart-button,.primary,.secondary{border:0;cursor:pointer;font-weight:700}
+.cart-button{background:var(--black);color:#fff;padding:11px 14px;border-radius:5px}
+.cart-count{color:var(--gold)}
+.hero{min-height:420px;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.22)),url('https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=1800&q=85') center/cover;display:flex;align-items:center;color:#fff}
+.hero-inner{max-width:1200px;width:100%;margin:auto;padding:60px 24px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:3px;text-transform:uppercase}
+.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;margin:16px 0;max-width:650px}
+.hero p{max-width:490px;line-height:1.7;color:#eee}
+.primary{background:var(--gold);color:#111;padding:13px 20px;border-radius:4px;display:inline-block;margin-top:12px}
+.primary:hover{background:#e5c779}
+.section{max-width:1200px;margin:auto;padding:52px 20px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.section h2{font-size:30px;margin:0 0 8px}.sub{color:var(--muted);font-size:14px;margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{background:#fff;border:1px solid #ddd;padding:9px 13px;border-radius:25px;cursor:pointer}
+.filter.active,.filter:hover{background:#111;color:#fff;border-color:#111}
+.search{width:min(100%,280px);padding:11px 13px;border:1px solid #ddd;border-radius:5px;background:#fff}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.product{background:#fff;border:1px solid #eee;border-radius:7px;overflow:hidden;display:flex;flex-direction:column}
+.product img{width:100%;height:250px;object-fit:cover;background:#e7e3dc}
+.product-info{padding:15px;display:flex;flex-direction:column;flex:1}
+.tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#987020;font-weight:bold}
+.product h3{font-size:16px;margin:8px 0}
+.price{font-weight:800;font-size:18px;margin-bottom:12px}.old{font-size:12px;color:#999;text-decoration:line-through;margin-left:7px;font-weight:normal}
+.product-actions{display:flex;gap:8px;margin-top:auto}
+.add{flex:1;background:#111;color:#fff;border:0;padding:11px 8px;border-radius:4px;cursor:pointer;font-weight:bold}
+.add:hover{background:#333}
+.whatsapp-small{background:#e8f7ed;color:#176b35;border:0;padding:10px;border-radius:4px;cursor:pointer}
+.promo{background:#151515;color:#fff;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:25px;padding:35px;border-radius:8px}
+.promo h2{font-size:32px;margin:10px 0}.promo p{color:#ddd;line-height:1.7}
+.promo img{width:100%;height:250px;object-fit:cover;border-radius:5px}
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.info-card{background:#fff;padding:25px;border-radius:7px;border:1px solid #eee}
+.qr{width:190px;height:190px;object-fit:contain;display:block;margin:15px auto;background:#f2f2f2}
+footer{background:#111;color:#fff;padding:35px 20px;text-align:center}
+footer p{color:#ccc;font-size:13px;line-height:1.7}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:30;align-items:center;justify-content:center;padding:15px}
+.modal-backdrop.show{display:flex}
+.modal{background:#fff;width:min(100%,560px);max-height:90vh;overflow:auto;border-radius:9px;padding:22px}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.modal h2{margin:0 0 12px}.close{border:0;background:#eee;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.field{display:block;margin:12px 0;font-size:13px;font-weight:bold}
+.field input,.field textarea,.field select{display:block;width:100%;margin-top:6px;padding:12px;border:1px solid #ddd;border-radius:4px}
+.cart-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eee}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty button{border:1px solid #ddd;background:#f7f7f7;width:27px;height:27px;cursor:pointer;border-radius:4px}
+.total{font-size:20px;font-weight:bold;text-align:right;margin:18px 0}
+.full{width:100%;text-align:center}
+.note{font-size:12px;color:#777;line-height:1.5}
+.empty{text-align:center;padding:30px;color:#777;grid-column:1/-1}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product img{height:230px}}
+@media(max-width:600px){.nav{padding:12px}.navlinks{display:none}.logo{font-size:20px}.hero{min-height:390px}.hero-inner{padding:42px 20px}.section{padding:38px 14px}.section h2{font-size:25px}.products{gap:11px}.product img{height:190px}.product-info{padding:11px}.product h3{font-size:14px}.price{font-size:16px}.product-actions{flex-direction:column}.promo,.payment-grid{grid-template-columns:1fr}.promo{padding:22px}.promo img{height:200px}.search{width:100%}}
+</style>
+</head>
+<body>
+<div class="topbar">MEN'S FASHION • NEW STYLES, EVERY DAY</div>
+<header>
+  <nav class="nav">
+    <a class="logo" href="#home">EGAAF <span>CLOTHES</span></a>
+    <div class="navlinks"><a href="#home">Home</a><a href="#shop">Shop</a><a href="#payment">Payment</a><a href="#contact">Contact</a></div>
+    <button class="cart-button" onclick="openCart()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="eyebrow">Egaaf Men's Collection</div>
+    <h1>STYLE THAT<br>MAKES A STATEMENT.</h1>
+    <p>Refresh your wardrobe with everyday essentials and standout looks. Discover shirts, T-shirts, jeans and more at Egaaf Clothes.</p>
+    <a class="primary" href="#shop">SHOP THE COLLECTION →</a>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <div class="section-head">
+    <div><h2>Shop Men's Fashion</h2><p class="sub">Choose your style and add your favourites to the cart.</p></div>
+    <input class="search" id="search" placeholder="Search clothes..." oninput="renderProducts()">
+  </div>
+  <div class="section-head">
+    <div class="filters">
+      <button class="filter active" data-category="All" onclick="setCategory('All',this)">All</button>
+      <button class="filter" data-category="Shirts" onclick="setCategory('Shirts',this)">Shirts</button>
+      <button class="filter" data-category="T-Shirts" onclick="setCategory('T-Shirts',this)">T-Shirts</button>
+      <button class="filter" data-category="Jeans" onclick="setCategory('Jeans',this)">Jeans</button>
+      <button class="filter" data-category="Trousers" onclick="setCategory('Trousers',this)">Trousers</button>
+    </div>
+  </div>
+  <div class="products" id="products"></div>
+  <p class="note">Sample products and prices are shown for demonstration. Update them to match your real stock and prices before publishing.</p>
+</section>
+
+<section class="section">
+  <div class="promo">
+    <div><div class="eyebrow">Your everyday style</div><h2>LOOK GOOD.<br>FEEL CONFIDENT.</h2><p>Find your next favourite outfit with Egaaf Clothes. Add products to your cart or send your order directly through WhatsApp.</p><a href="#shop" class="primary">EXPLORE PRODUCTS</a></div>
+    <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=900&q=80" alt="Men's fashion collection" loading="lazy">
+  </div>
+</section>
+
+<section class="section" id="payment">
+  <div class="section-head"><div><h2>Payment & Orders</h2><p class="sub">Order through WhatsApp and follow the payment instructions from the shop.</p></div></div>
+  <div class="payment-grid">
+    <div class="info-card"><h3>💬 Order on WhatsApp</h3><p>When you check out, your product list and customer details will be prepared as a WhatsApp message.</p><p class="note">WhatsApp number must be configured in the code before the website goes live.</p><button class="primary" onclick="openCart()">GO TO CART</button></div>
+    <div class="info-card"><h3>💳 Scan & Pay</h3><p class="sub">Replace the sample image below with your shop's actual UPI QR code.</p><img class="qr" src="qrcode.jpg" alt="Add your UPI QR code as qrcode.jpg" onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block'"><p id="qrFallback" class="note" style="display:none;text-align:center;padding:20px;background:#f5f5f5">Add your QR image named <b>qrcode.jpg</b> in the same folder as index.html.</p><p class="note">Please verify the recipient name and amount in your UPI app before paying.</p></div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="logo">EGAAF <span>CLOTHES</span></div>
+  <p>Men's Fashion • Shirts • T-Shirts • Jeans • Trousers</p>
+  <p>For orders and enquiries, contact the shop through WhatsApp.</p>
+  <p>© <span id="year"></span> Egaaf Clothes. All rights reserved.</p>
+</footer>
+
+<div class="modal-backdrop" id="cartBackdrop" onclick="backdropClose(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="modal-top"><h2 id="cartTitle">Your Shopping Cart</h2><button class="close" onclick="closeCart()" aria-label="Close">✕</button></div>
+    <div id="cartItems"></div>
+    <div class="total" id="cartTotal">Total: ₹0</div>
+    <h3>Customer details</h3>
+    <form id="checkoutForm">
+      <label class="field">Your name *<input id="customerName" required autocomplete="name" placeholder="Enter your name"></label>
+      <label class="field">Phone number *<input id="customerPhone" required type="tel" inputmode="tel" pattern="[0-9+ -]{8,16}" autocomplete="tel" placeholder="Enter phone number"></label>
+      <label class="field">Delivery address / pickup details *<textarea id="customerAddress" required rows="3" placeholder="Enter address or write shop pickup"></textarea></label>
+      <label class="field">Extra instructions (optional)<textarea id="customerNotes" rows="2" placeholder="Size, colour, etc."></textarea></label>
+      <button type="submit" class="primary full">SEND ORDER TO WHATSAPP</button>
+    </form>
+    <p class="note">Sending an order opens WhatsApp. The order is not confirmed until the shop replies. Delivery fees, if any, are not included in the displayed total.</p>
+  </div>
+</div>
+
+<script>
+// IMPORTANT: Replace this with the shop's WhatsApp number in international format,
+// digits only, including country code. Example for India: 919876543210
+const SHOP_WHATSAPP = "919790824826";
+
+// These are demonstration products and prices. Replace with your actual products.
+const products = [
+ {id:1,name:"Classic Casual Shirt",category:"Shirts",price:699,old:899,image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=700&q=80"},
+ {id:2,name:"Everyday Black T-Shirt",category:"T-Shirts",price:399,old:499,image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"},
+ {id:3,name:"Slim Fit Blue Jeans",category:"Jeans",price:999,old:1299,image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80"},
+ {id:4,name:"Smart Formal Shirt",category:"Shirts",price:799,old:999,image:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80"},
+ {id:5,name:"Printed T-Shirt",category:"T-Shirts",price:449,old:599,image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=80"},
+ {id:6,name:"Everyday Chino Trousers",category:"Trousers",price:899,old:1099,image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80"},
+ {id:7,name:"Dark Denim Jeans",category:"Jeans",price:1099,old:1399,image:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=80"},
+ {id:8,name:"Premium Polo T-Shirt",category:"T-Shirts",price:549,old:699,image:"https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=700&q=80"}
+];
+let category = "All";
+let cart = JSON.parse(localStorage.getItem("egaafCart") || "{}");
+const money = n => "₹" + Number(n).toLocaleString("en-IN");
+function renderProducts(){
+ const query = document.getElementById("search").value.trim().toLowerCase();
+ const list = products.filter(p => (category==="All"||p.category===category) && p.name.toLowerCase().includes(query));
+ document.getElementById("products").innerHTML = list.length ? list.map(p=>`
+ <article class="product">
+   <img src="${p.image}" alt="${p.name}" loading="lazy">
+   <div class="product-info"><span class="tag">${p.category}</span><h3>${p.name}</h3>
+   <div class="price">${money(p.price)} <span class="old">${money(p.old)}</span></div>
+   <div class="product-actions"><button class="add" onclick="addToCart(${p.id})">ADD TO CART</button><button class="whatsapp-small" onclick="quickWhatsApp(${p.id})" aria-label="Order ${p.name} on WhatsApp">WhatsApp</button></div></div>
+ </article>`).join("") : '<div class="empty">No products found. Try another search.</div>';
+}
+function setCategory(value,button){category=value;document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));button.classList.add("active");renderProducts()}
+function saveCart(){localStorage.setItem("egaafCart",JSON.stringify(cart));updateCartCount()}
+function addToCart(id){cart[id]=(cart[id]||0)+1;saveCart();toast("Added to cart")}
+function updateCartCount(){document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
+function cartTotal(){return Object.entries(cart).reduce((sum,[id,qty])=>{const p=products.find(x=>x.id===Number(id));return sum+(p?p.price*qty:0)},0)}
+function renderCart(){
+ const entries=Object.entries(cart).filter(([id,qty])=>qty>0 && products.some(p=>p.id===Number(id)));
+ const box=document.getElementById("cartItems");
+ if(!entries.length){box.innerHTML='<div class="empty">Your cart is empty. Close this window and add some clothes.</div>';document.getElementById("cartTotal").textContent="Total: ₹0";return}
+ box.innerHTML=entries.map(([id,qty])=>{const p=products.find(x=>x.id===Number(id));return `<div class="cart-line"><div><b>${p.name}</b><div class="note">${money(p.price)} each</div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${qty}</span><button onclick="changeQty(${p.id},1)">+</button><button onclick="removeItem(${p.id})" aria-label="Remove item">Remove</button></div></div><b>${money(p.price*qty)}</b></div>`}).join("");
+ document.getElementById("cartTotal").textContent="Total: "+money(cartTotal());
+}
+function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];saveCart();renderCart()}
+function removeItem(id){delete cart[id];saveCart();renderCart()}
+function openCart(){renderCart();document.getElementById("cartBackdrop").classList.add("show");document.body.style.overflow="hidden"}
+function closeCart(){document.getElementById("cartBackdrop").classList.remove("show");document.body.style.overflow=""}
+function backdropClose(e){if(e.target.id==="cartBackdrop")closeCart()}
+function validWhatsApp(){return /^\d{10,15}$/.test(SHOP_WHATSAPP)}
+function orderMessage(extraId=null){
+ const lines=extraId!==null ? [[String(extraId),1]] : Object.entries(cart);
+ let total=0;
+ let msg="*New Order - Egaaf Clothes*%0A%0A";
+ lines.forEach(([id,qty])=>{const p=products.find(x=>x.id===Number(id));if(p){total+=p.price*qty;msg+=encodeURIComponent(p.name+" x "+qty+" = "+money(p.price*qty))+"%0A"}});
+ msg+="%0A*Estimated total: "+money(total)+"*%0A";
+ if(extraId===null){
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const address=document.getElementById("customerAddress").value.trim();
+  const notes=document.getElementById("customerNotes").value.trim();
+  msg+="%0AName: "+encodeURIComponent(name)+"%0APhone: "+encodeURIComponent(phone)+"%0AAddress: "+encodeURIComponent(address);
+  if(notes)msg+="%0ANotes: "+encodeURIComponent(notes);
+ }
+ msg+="%0A%0APlease confirm availability and final amount.";
+ return msg;
+}
+function quickWhatsApp(id){
+ if(!validWhatsApp()){alert("Please set SHOP_WHATSAPP in the code to your shop's WhatsApp number first.");return}
+ const url="https://wa.me/"+SHOP_WHATSAPP+"?text="+orderMessage(id);
+ window.open(url,"_blank","noopener");
+}
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!Object.keys(cart).length){alert("Your cart is empty.");return}
+ if(!validWhatsApp()){alert("Please set SHOP_WHATSAPP in the code to your shop's WhatsApp number first.");return}
+ window.open("https://wa.me/"+SHOP_WHATSAPP+"?text="+orderMessage(),"_blank","noopener");
+});
+function toast(text){const old=document.getElementById("toast");if(old)old.remove();const el=document.createElement("div");el.id="toast";el.textContent=text;el.style.cssText="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#111;color:white;padding:12px 20px;border-radius:5px;z-index:50";document.body.appendChild(el);setTimeout(()=>el.remove(),1600)}
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProducts();updateCartCount();
+</script>
+</body>
+</html>
